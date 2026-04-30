@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=80", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "telegram-stories-scheduler"
+version = "0.1.0"
+description = "A reliable Telegram Stories scheduler with bot controls, MTProto publishing, media preparation, retries, and Windows packaging."
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "Project Maintainers" }]
+scripts = { stories = "app.cli:main" }
+dependencies = [
+  "aiogram>=3.25,<3.26",
+  "aiohttp-socks>=0.10,<0.11",
+  "Telethon>=1.42,<1.43",
+  "cryptg>=0.5.2,<0.6",
+  "SQLAlchemy>=2.0,<2.1",
+  "alembic>=1.17,<1.18",
+  "APScheduler>=3.11,<3.12",
+  "Pillow>=11.0,<12.0",
+  "aiosqlite>=0.20,<0.21",
+  "tzdata>=2025.2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.4,<8.5",
+  "pytest-asyncio>=1.2,<1.3",
+  "pyinstaller>=6.19,<6.20",
+]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
